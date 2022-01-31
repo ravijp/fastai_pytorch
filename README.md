@@ -1,26 +1,67 @@
-# cookiecutter-fastapi
+# fastai_pytorch
 
-In order to create a template to FastAPI projects. :rocket:
+RP hands on fastai, pytorch with FastAPI, PostgreSQL db
 
-## Important
-To use this project you don't need fork it. Just run cookiecutter CLI and voilà!
+## Development Requirements
 
-## Cookiecutter
+- Python3.8.2
+- Pip
+- Poetry (Python Package Manager)
 
-Cookiecutter is a CLI tool (Command Line Interface) to create an application boilerplate from a template. It uses a templating system — Jinja2 — to replace or customize folder and file names, as well as file content.
+### M.L Model Environment
 
-### How can I install?
-
-```bash
-pip install cookiecutter
+```sh
+MODEL_PATH=./ml/model/
+MODEL_NAME=model.pkl
 ```
 
-### How can I generate a FastAPI project?
+### Update `/predict`
 
-```bash
-cookiecutter gh:arthurhenrique/cookiecutter-fastapi
+To update your machine learning model, add your `load` and `method` [change here](app/api/routes/predictor.py#L13) at `predictor.py`
+
+## Installation
+
+```sh
+python -m venv venv
+source venv/bin/activate
+make install
 ```
 
-### Hands On
+## Runnning Localhost
 
-![Example](./docs/example/cookiecutter-fastapi-cli.svg)
+`make run`
+
+## Deploy app
+
+`make deploy`
+
+## Running Tests
+
+`make test`
+
+## Runnning Easter Egg
+
+`make easter`
+
+## Access Swagger Documentation
+
+> <http://localhost:8080/docs>
+
+## Access Redocs Documentation
+
+> <http://localhost:8080/redoc>
+
+## Project structure
+
+Files related to application are in the `app` or `tests` directories.
+Application parts are:
+
+    app
+    ├── api              - web related stuff.
+    │   └── routes       - web routes.
+    ├── core             - application configuration, startup events, logging.
+    ├── models           - pydantic models for this application.
+    ├── services         - logic that is not just crud related.
+    └── main.py          - FastAPI application creation and configuration.
+    │
+    tests                  - pytest
